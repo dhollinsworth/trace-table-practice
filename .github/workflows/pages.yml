@@ -1,4 +1,5 @@
 name: Deploy GitHub Pages
+# Re-trigger deployment for the public projects index
 on:
   push:
     branches: [main]
