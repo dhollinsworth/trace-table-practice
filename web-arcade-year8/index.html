@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Six playable HTML and CSS missions for Year 8. Build a space rescue station website and see your code in action.">
+<title>Web Arcade · Year 8 HTML & CSS</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1020;--panel:#151a30;--line:#343c60;--ink:#f5f5ff;--muted:#bcc5e0;--lime:#d9ff63;--purple:#bcafff;--pink:#ffb9d1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif}button,textarea{font:inherit}button{cursor:pointer;color:inherit;background:#222943;border:1px solid #4c577f;border-radius:10px;padding:.52rem .8rem;font-weight:700}button:hover{border-color:var(--lime)}:focus-visible{outline:3px solid var(--lime);outline-offset:3px}.primary{background:var(--lime);color:#181e14;border-color:var(--lime)}[hidden]{display:none!important}h1,h2,h3,p{margin:0}small,.muted{color:var(--muted)}.wrap{width:min(1320px,94%);margin:auto}
+header{border-bottom:1px solid var(--line)}header .wrap{min-height:62px;display:flex;justify-content:space-between;align-items:center;gap:.7rem;flex-wrap:wrap}.brand{font-weight:900;letter-spacing:.04em}.brand i{font-style:normal;color:var(--lime);margin-right:.5rem}
+.hero{position:relative;overflow:hidden;margin:20px 0;border:1px solid #464575;border-radius:22px;padding:clamp(20px,4vw,49px);background:radial-gradient(ellipse at 85% 50%,#332871 0,transparent 52%),#191e3a;display:grid;grid-template-columns:minmax(0,1fr) minmax(135px,28%);align-items:center;gap:1rem}.eyebrow{color:var(--lime);font:700 .75rem/1.4 ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(2.5rem,7vw,5.3rem);line-height:.98;letter-spacing:-.06em;margin:.34em 0 .23em}.hero h1 span{color:var(--lime)}.hero p{max-width:53ch;color:#dce1ff}.planet{width:100%;max-height:190px;filter:drop-shadow(0 0 25px #8270fa55)}
+.layout{display:grid;grid-template-columns:235px minmax(0,1fr);gap:16px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:clamp(14px,2vw,22px)}.side h2{font-size:1.1rem}.side progress{width:100%;height:.65rem;accent-color:var(--lime);margin:.7rem 0}.map{display:grid;gap:.45rem;margin:.65rem 0}.map button{text-align:left;display:flex;gap:.6rem;align-items:baseline;font-size:.87rem}.map button[aria-current=step]{background:#39345f;border-color:var(--purple)}.map b{color:var(--lime);font-family:monospace}.map .free{margin-top:.25rem}.lesson h2{font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.12;margin:.25rem 0 .5rem}.lesson p{margin:.42rem 0}.lesson pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#0c1022;border-radius:8px;border:1px solid var(--line);color:#ded3ff;padding:.65rem .8rem;margin:.65rem 0;font-size:.85rem}.task{border-left:3px solid var(--lime);padding-left:.8rem;margin:.8rem 0;color:#ecf9c9}.task ul{margin:.2rem 0;padding-left:1.2rem}details{margin:.6rem 0;color:var(--muted)}summary{color:var(--purple);cursor:pointer;font-weight:700}code{color:#e2d7ff}
+.workbench{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.75rem;margin-top:.9rem}.workhead{min-height:43px;display:flex;align-items:center;justify-content:space-between;gap:.4rem;flex-wrap:wrap}.workhead button{font-size:.8rem;padding:.3rem .55rem}.workhead button[aria-pressed=true]{background:#5c4f99}.workhead h3{font-size:1rem}.workbench textarea,.preview{display:block;width:100%;height:292px;border:1px solid #4c577f;border-radius:9px}.workbench textarea{resize:vertical;background:#0a0e1e;color:#edebff;padding:.75rem;font:14px/1.5 ui-monospace,monospace;tab-size:2}.preview{background:#0a0e1e;overflow:auto}.preview iframe{display:block;width:100%;height:100%;border:0;background:white;margin:auto}.preview.phone iframe{width:min(100%,320px)}.actions{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.75rem}.feedback{min-height:1.6em;font-weight:700;color:var(--pink)}.feedback.success{color:var(--lime)}footer{padding:1rem 0 2rem;color:var(--muted);font-size:.86rem}.tools{margin-top:1rem;border-top:1px solid var(--line);padding-top:.7rem}.tools button{font-size:.8rem}.tools p{margin:.4rem 0}.sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:900px){.layout{grid-template-columns:185px minmax(0,1fr)}.workbench{grid-template-columns:1fr}}@media(max-width:640px){.layout{grid-template-columns:1fr}.map{grid-template-columns:1fr 1fr}.hero{grid-template-columns:1fr 100px}.hero h1{font-size:clamp(2.1rem,10vw,3.3rem)}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="brand"><i>&lt;/&gt;</i> WEB ARCADE</div><small id="saved">Loading workspace…</small></div></header>
+<main class="wrap">
+<section class="hero" aria-labelledby="title">
+<div><div class="eyebrow">Year 8 / HTML + CSS</div><h1 id="title">Code the <span>cosmos.</span></h1><p>A meteor shower knocked Station Nova’s website offline. Rebuild it in six missions, then design a station of your own.</p></div>
+<svg class="planet" viewBox="0 0 240 185" aria-hidden="true"><defs><linearGradient id="planet" x2="1" y2="1"><stop stop-color="#d7c8ff"/><stop offset="1" stop-color="#795deb"/></linearGradient></defs><g fill="#d9ff63"><path d="M26 30l3 9 9 3-9 3-3 9-3-9-9-3 9-3zM204 19l3 9 9 3-9 3-3 9-3-9-9-3 9-3zM210 145l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><circle cx="44" cy="140" r="3"/><circle cx="176" cy="165" r="2"/></g><circle cx="120" cy="92" r="57" fill="url(#planet)"/><path d="M70 70q40-24 86-17M65 98q40-26 104-26M79 129q52-12 96-39" fill="none" stroke="#ded1ff" stroke-opacity=".55" stroke-width="6"/><path d="M76 64C34 77 9 106 23 122c18 22 103 8 158-17 38-17 54-36 37-44-10-5-27-5-43-3" fill="none" stroke="#d9ff63" stroke-width="4" stroke-linecap="round"/></svg>
+</section>
+<div class="layout">
+<aside class="panel side"><h2>Mission map</h2><progress id="progress" max="6" value="0" aria-label="Missions cleared"></progress><div id="score" class="muted"></div><nav id="map" class="map" aria-label="Coding missions"></nav>
+<details class="tools"><summary>Move your progress</summary><p>Download a backup to continue on another device.</p><div class="actions"><button id="backup">Save backup</button><button id="restore">Open backup</button><input id="file" type="file" accept=".json,application/json" hidden></div><p id="backup-status" role="status"></p></details></aside>
+<section class="panel lesson" aria-labelledby="lesson-title">
+<div class="eyebrow" id="level"></div><h2 id="lesson-title" tabindex="-1"></h2><p id="explain"></p><pre id="example"></pre>
+<div class="task"><strong id="task-label">Your mission</strong><ul id="steps"></ul></div><details id="hint-box"><summary>Reveal a hint</summary><p id="hint"></p></details>
+<div class="workbench">
+<div><div class="workhead" role="group" aria-label="Code editor"><button id="html-tab" aria-pressed="true">HTML</button><button id="css-tab" aria-pressed="false">CSS</button></div>
+<label class="sr" id="editor-label" for="editor">HTML code</label><textarea id="editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea></div>
+<div><div class="workhead"><h3>Live preview</h3><button id="phone" aria-pressed="false">Phone width</button></div><div id="preview-box" class="preview"><iframe id="preview" title="Preview of your website" sandbox></iframe></div></div>
+</div>
+<div class="actions"><button class="primary" id="check">Check mission</button><button id="next" hidden>Next mission →</button><button id="load-station" hidden>Load my mission 6 code</button><button id="download" hidden>Download website</button></div>
+<p class="feedback" id="feedback" role="status"></p>
+</section>
+</div>
+<footer>Web Arcade · Year 8 Computing · Progress saves in this browser. Use a backup to move your work between devices.</footer>
+</main>
+<script>
+'use strict';
+const heading = '<h1>Station Nova</h1>\n<p>Ready for rescue.</p>';
+const supplies = heading + '\n<h2>Rescue supplies</h2>\n<ul>\n  <li>Oxygen</li>\n  <li>Torch</li>\n  <li>Radio</li>\n</ul>';
+const bulletin = supplies + '\n<a href="#status">Jump to status</a>\n<h2 id="status">Station status</h2>\n<p>All systems ready.</p>';
+const colours = 'body {\n  background-color: #e0e7ff;\n  font-family: system-ui;\n}\nh1 {\n  color: #4338ca;\n}';
+const wrapped = bulletin.replace('<p>All systems ready.</p>', '<p class="alert">All systems ready.</p>');
+const alertCSS = colours + '\n.alert {\n  background-color: #fff1b8;\n  padding: 12px;\n}';
+const missionData = [
+  {
+    title:'Restore the signal', rank:'Launch pad · HTML', tab:'html',
+    explain:'HTML gives a page its structure. An opening tag starts an element and a closing tag ends it.',
+    example:'<h1>Moon Base</h1>\n<p>We landed safely.</p>',
+    steps:['Put Station Nova inside an <h1> heading.', 'Put Ready for rescue. inside a <p> paragraph.'],
+    hint:'Use <h1>Station Nova</h1> for the heading. On the next line, place your message between <p> and </p>.',
+    html:'<!-- Replace this comment with your heading and paragraph. -->', css:''
+  },
+  {
+    title:'Pack the rescue kit', rank:'Launch pad · HTML', tab:'html',
+    explain:'A <ul> makes a bullet list. Every item goes inside its own <li> element.',
+    example:'<ul>\n  <li>Helmet</li>\n  <li>Water</li>\n</ul>',
+    steps:['Below Rescue supplies, add a <ul> with three <li> items.', 'Use Oxygen, Torch and Radio as your items.'],
+    hint:'Start with <ul>. Put <li>Oxygen</li> on the next line, add two more items, then close with </ul>.',
+    html:heading + '\n<h2>Rescue supplies</h2>\n<!-- Add the kit list here. -->', css:''
+  },
+  {
+    title:'Build a jump link', rank:'Orbit · HTML', tab:'html',
+    explain:'An anchor link can jump to a section on the same page. Its href starts with # followed by the target element’s id.',
+    example:'<a href="#crew">Meet the crew</a>\n<h2 id="crew">Crew list</h2>',
+    steps:['Add a link labelled Jump to status above the status heading.', 'Give the heading id="status" and point the link to #status.'],
+    hint:'Add <a href="#status">Jump to status</a> above the heading, then put id="status" inside the heading’s opening tag.',
+    html:supplies + '\n<!-- Add a jump link here. -->\n<h2>Station status</h2>\n<p>All systems ready.</p>', css:''
+  },
+  {
+    title:'Switch on the colours', rank:'Orbit · CSS', tab:'css',
+    explain:'CSS changes how the HTML looks. A selector chooses what to style. Inside the braces, each property sets one part of the design.',
+    example:'p {\n  color: navy;\n}',
+    steps:['Set a background-color on body.', 'Set a text color on h1. Pick your own colours.'],
+    hint:'Inside body { }, try background-color: lavender; and inside h1 { }, try color: indigo;.',
+    html:bulletin, css:'body {\n  font-family: system-ui;\n  /* Add a background colour */\n}\nh1 {\n  /* Add a text colour */\n}'
+  },
+  {
+    title:'Design an alert badge', rank:'Deep space · HTML + CSS', tab:'html',
+    explain:'A class lets you style particular elements. Use class="alert" in HTML and .alert as your CSS selector. Padding adds space inside the element.',
+    example:'<p class="notice">Airlock open</p>\n\n.notice { padding: 10px; background-color: gold; }',
+    steps:['Add class="alert" to the All systems ready. paragraph.', 'In CSS, give .alert a background-color and padding greater than 0px.'],
+    hint:'Edit the status paragraph’s opening tag to <p class="alert">. Then add .alert { padding: 12px; background-color: gold; } in CSS.',
+    html:bulletin, css:colours
+  },
+  {
+    title:'Pass the phone test', rank:'Boss mission · Responsive CSS', tab:'css',
+    explain:'A fixed-width card can overflow on a phone. A percentage width can shrink with the screen. A max-width stops it growing too wide on a laptop.',
+    example:'.poster {\n  width: 100%;\n  max-width: 500px;\n}',
+    steps:['Turn on Phone width and look at the station card.', 'Change .station to width: 100% and give it a max-width of 640px or less.', 'Switch between phone and wide preview to compare the result.'],
+    hint:'Replace width: 640px; with width: 100%; and add max-width: 640px; in the same rule.',
+    html:'<main class="station">\n' + wrapped.split('\n').map(line => '  ' + line).join('\n') + '\n</main>',
+    css:alertCSS + '\n* { box-sizing: border-box; }\n.station {\n  width: 640px;\n  margin: auto;\n  padding: 16px;\n  background-color: white;\n  border-radius: 12px;\n}'
+  },
+  {
+    title:'Build your own station', rank:'Free build · HTML + CSS', tab:'html',
+    explain:'Design a station, a game hub or a club page. Start here or bring in your mission 6 code. Save the finished HTML file to open in a browser.',
+    example:'<h1>Ice Moon Arcade</h1>\n<p>Three games. One tiny moon.</p>',
+    steps:['Give your site a name and add an intro, a list and a jump link.', 'Style one part of your page with a class and check your layout at phone width.'],
+    hint:'Open earlier missions for examples. Your work in each mission stays saved when you switch.',
+    html:'<h1>My new website</h1>\n<p>Welcome aboard.</p>', css:'body {\n  font-family: system-ui;\n  padding: 16px;\n}'
+  }
+];
+const $ = id => document.getElementById(id);
+const key = 'year8-web-arcade-v1';
+function blankState() {
+  return {version:1, current:0, cleared:[], drafts:missionData.map(({html,css}) => ({html,css}))};
+}
+function readState(data) {
+  if (data?.version !== 1 || !Array.isArray(data.drafts) || data.drafts.length !== missionData.length ||
+      !data.drafts.every(d => typeof d?.html === 'string' && typeof d?.css === 'string' && d.html.length <= 100000 && d.css.length <= 100000) ||
+      !Array.isArray(data.cleared) || !data.cleared.every(n => Number.isInteger(n) && n >= 0 && n < 6) ||
+      !Number.isInteger(data.current) || !missionData[data.current]) throw new Error('Invalid backup');
+  return {version:1, current:data.current, cleared:[...new Set(data.cleared)], drafts:data.drafts.map(({html,css}) => ({html,css}))};
+}
+let state = blankState();
+try { const saved = localStorage.getItem(key); if (saved) state = readState(JSON.parse(saved)); } catch {}
+let tab, previewTimer;
+function save() {
+  try { localStorage.setItem(key, JSON.stringify(state)); $('saved').textContent = '● Saved on this device'; }
+  catch { $('saved').textContent = 'Browser saving unavailable · use Save backup'; }
+}
+function parsed(html) {
+  const doc = document.implementation.createHTMLDocument();
+  const template = doc.createElement('template');
+  template.innerHTML = html;
+  return template.content;
+}
+function cleanHTML(html, preview) {
+  const fragment = parsed(html);
+  fragment.querySelectorAll('script, style, link, meta, base, iframe, frame, object, embed, template').forEach(node => node.remove());
+  fragment.querySelectorAll('*').forEach(node => {
+    for (const {name, value} of [...node.attributes]) {
+      if (name.startsWith('on') || (['href','src','xlink:href','action','formaction'].includes(name) && /^\s*javascript:/i.test(value)) ||
+          (preview && ['href','xlink:href'].includes(name) && !value.startsWith('#'))) node.removeAttribute(name);
+    }
+  });
+  const wrapper = document.createElement('div');
+  wrapper.append(fragment);
+  return wrapper.innerHTML;
+}
+function documentHTML(draft, preview = false) {
+  const policy = preview ? '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'; img-src data:; form-action \'none\'; base-uri \'none\'">' : '';
+  const css = draft.css.replace(/<\/style/gi, '<\\/style');
+  return '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' +
+    policy + '<title>My Web Arcade website</title><style>\n' + css + '\n</style></head><body>\n' + cleanHTML(draft.html, preview) + '\n</body></html>';
+}
+function showPreview() { $('preview').srcdoc = documentHTML(state.drafts[state.current], true); }
+function drawMap() {
+  const buttons = missionData.map((mission, i) => {
+    const button = document.createElement('button');
+    const number = document.createElement('b');
+    number.textContent = state.cleared.includes(i) ? '✓' : i === 6 ? '★' : String(i + 1).padStart(2,'0');
+    button.append(number, document.createTextNode(mission.title));
+    if (i === state.current) button.setAttribute('aria-current','step');
+    if (i === 6) button.className = 'free';
+    button.addEventListener('click', () => openMission(i,true));
+    return button;
+  });
+  $('map').replaceChildren(...buttons);
+  $('progress').value = state.cleared.length;
+  $('score').textContent = state.cleared.length === 6 ? '🏆 All 6 missions cleared' : state.cleared.length + ' / 6 missions cleared';
+}
+function switchTab(nextTab) {
+  tab = nextTab;
+  $('html-tab').setAttribute('aria-pressed', tab === 'html');
+  $('css-tab').setAttribute('aria-pressed', tab === 'css');
+  $('editor-label').textContent = tab.toUpperCase() + ' code';
+  $('editor').value = state.drafts[state.current][tab];
+}
+function feedback(message, success = false) {
+  $('feedback').textContent = message;
+  $('feedback').classList.toggle('success', success);
+}
+function openMission(i, focus = false) {
+  clearTimeout(previewTimer);
+  state.current = i;
+  const mission = missionData[i];
+  $('level').textContent = mission.rank;
+  $('lesson-title').textContent = mission.title;
+  $('explain').textContent = mission.explain;
+  $('example').textContent = mission.example;
+  $('steps').replaceChildren(...mission.steps.map(step => {
+    const item = document.createElement('li');
+    item.textContent = step;
+    return item;
+  }));
+  $('hint').textContent = mission.hint;
+  $('hint-box').open = false;
+  $('phone').setAttribute('aria-pressed','false');
+  $('preview-box').classList.remove('phone');
+  $('check').hidden = i === 6;
+  $('next').hidden = i === 6 || !state.cleared.includes(i);
+  $('download').hidden = $('load-station').hidden = i !== 6;
+  feedback('');
+  switchTab(mission.tab);
+  drawMap();
+  showPreview();
+  save();
+  if (focus) $('lesson-title').focus();
+}
+function exact(node, text) { return node?.textContent.trim().replace(/\s+/g,' ').toLowerCase() === text.toLowerCase(); }
+function styles(css, selector) {
+  const sheet = new CSSStyleSheet();
+  sheet.replaceSync(css);
+  const result = {};
+  for (const rule of sheet.cssRules) {
+    if (!rule.selectorText?.split(',').map(value => value.trim()).includes(selector)) continue;
+    for (const name of ['background-color','color','padding-top','width','max-width']) {
+      const value = rule.style.getPropertyValue(name);
+      if (value) result[name] = value;
+    }
+  }
+  return result;
+}
+const checks = [
+  draft => {
+    const doc = parsed(draft.html);
+    if (![...doc.querySelectorAll('h1')].some(node => exact(node,'Station Nova'))) return 'Add an <h1> with Station Nova inside.';
+    if (![...doc.querySelectorAll('p')].some(node => exact(node,'Ready for rescue.'))) return 'Add a <p> with Ready for rescue. inside, including the full stop.';
+  },
+  draft => {
+    const doc = parsed(draft.html);
+    const expected = ['Oxygen','Torch','Radio'];
+    if (![...doc.querySelectorAll('ul')].some(list => {
+      const items = [...list.children].filter(node => node.localName === 'li');
+      return items.length === 3 && expected.every(text => items.some(item => exact(item,text)));
+    })) return 'Use one bullet list with a separate <li> for Oxygen, Torch and Radio.';
+  },
+  draft => {
+    const doc = parsed(draft.html);
+    if (!exact(doc.querySelector('h2#status'),'Station status')) return 'Give the Station status heading id="status".';
+    if (![...doc.querySelectorAll('a[href="#status"]')].some(link => exact(link,'Jump to status'))) return 'Use an <a> with href="#status" and the label Jump to status.';
+  },
+  draft => {
+    if (!styles(draft.css,'body')['background-color']) return 'Set a valid background-color in the body rule.';
+    if (!styles(draft.css,'h1').color) return 'Set a valid color in the h1 rule.';
+  },
+  draft => {
+    if (![...parsed(draft.html).querySelectorAll('p.alert')].some(node => exact(node,'All systems ready.'))) return 'Add the alert class to the All systems ready. paragraph.';
+    const alert = styles(draft.css,'.alert');
+    if (!alert['background-color']) return 'Set a valid background-color in the .alert rule.';
+    if (!(parseFloat(alert['padding-top']) > 0)) return 'Give .alert a positive padding, for example 12px.';
+  },
+  draft => {
+    const station = styles(draft.css,'.station');
+    if (!parsed(draft.html).querySelector('.station')) return 'Keep the station class on your HTML card so the rule applies.';
+    if (station.width !== '100%') return 'Set width: 100%; in the .station rule.';
+    const max = station['max-width'] || '';
+    if (!/^\d+(\.\d+)?px$/.test(max) || parseFloat(max) <= 0 || parseFloat(max) > 640) return 'Set a positive max-width of 640px or less in the .station rule.';
+  }
+];
+$('check').addEventListener('click', () => {
+  const error = checks[state.current](state.drafts[state.current]);
+  if (error) { feedback(error); return; }
+  if (!state.cleared.includes(state.current)) state.cleared.push(state.current);
+  $('next').hidden = false;
+  feedback(state.cleared.length === 6 ? '🏆 All missions cleared! Head to Free Build to create your own site.' : '✓ Mission cleared. On to the next one!', true);
+  drawMap();
+  save();
+});
+$('next').addEventListener('click', () => openMission(state.current + 1,true));
+$('html-tab').addEventListener('click', () => switchTab('html'));
+$('css-tab').addEventListener('click', () => switchTab('css'));
+$('editor').maxLength = 100000;
+$('editor').addEventListener('input', () => {
+  state.drafts[state.current][tab] = $('editor').value;
+  save();
+  feedback('');
+  clearTimeout(previewTimer);
+  previewTimer = setTimeout(showPreview, 180);
+});
+$('phone').addEventListener('click', () => {
+  const narrow = $('preview-box').classList.toggle('phone');
+  $('phone').setAttribute('aria-pressed', narrow);
+});
+function download(filename, content, type) {
+  const url = URL.createObjectURL(new Blob([content], {type}));
+  const link = document.createElement('a');
+  link.href = url; link.download = filename; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+$('backup').addEventListener('click', () => download('web-arcade-progress.json', JSON.stringify(state,null,2),'application/json'));
+$('restore').addEventListener('click', () => $('file').click());
+$('file').addEventListener('change', async () => {
+  const file = $('file').files[0];
+  $('file').value = '';
+  if (!file) return;
+  try {
+    if (file.size > 10000000) throw new Error('Backup too large');
+    const backup = readState(JSON.parse(await file.text()));
+    if (!confirm('Replace your current workspace with this backup?')) return;
+    state = backup;
+    openMission(state.current);
+    $('backup-status').textContent = 'Backup loaded.';
+  } catch { $('backup-status').textContent = 'Choose a valid Web Arcade progress file.'; }
+});
+$('load-station').addEventListener('click', () => {
+  const draft = state.drafts[6];
+  if ((draft.html !== missionData[6].html || draft.css !== missionData[6].css) &&
+      !confirm('Replace your Free Build code with your mission 6 code?')) return;
+  state.drafts[6] = {...state.drafts[5]};
+  switchTab(tab);
+  showPreview();
+  save();
+  feedback('Your mission 6 code is ready to customise.',true);
+});
+$('download').addEventListener('click', () => download('my-station.html',documentHTML(state.drafts[6]),'text/html'));
+openMission(state.current);
+</script>
+</body>
+</html>
